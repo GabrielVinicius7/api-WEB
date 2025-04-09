@@ -13,3 +13,12 @@ app = FastAPI(
     version = "1.0.0",
     
 )
+
+#Adicionar CORS para permitir acesso de outros domínios
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
