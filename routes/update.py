@@ -1,7 +1,7 @@
 from xml.dom import NO_MODIFICATION_ALLOWED_ERR
 
 from fastapi import FastAPI
-from models.model import usuario
+from models.model import User
 from main import app
 
 usuarios = []
