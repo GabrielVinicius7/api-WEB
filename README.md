@@ -91,9 +91,13 @@ app.include_router(read.router)
 Antes de rodar a aplicação, instale as dependências necessárias:
 
 ```bash
-pip install fastapi pydantic uvicorn[standard]
+pip install fastapi
+pip install pydantic
+pip install uvicorn[standard]
+pip install pydantic[email]
 ```
-*Nota: `uvicorn[standard]` instala o `uvicorn` junto com dependências recomendadas para melhor performance.*
+
+_Nota: `uvicorn[standard]` instala o `uvicorn` junto com dependências recomendadas para melhor performance._
 
 ## Execução
 
@@ -102,7 +106,8 @@ Para rodar a aplicação localmente com recarregamento automático (útil durant
 ```bash
 uvicorn main:app --reload
 ```
-*Substitua `main` pelo nome do seu arquivo Python principal (sem a extensão `.py`) e `app` pelo nome da variável onde você instanciou `FastAPI()`.*
+
+_Substitua `main` pelo nome do seu arquivo Python principal (sem a extensão `.py`) e `app` pelo nome da variável onde você instanciou `FastAPI()`._
 
 Após executar o comando, você deverá ver uma saída semelhante a esta no terminal, indicando que o servidor está rodando:
 
@@ -115,4 +120,4 @@ INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
 
-A API estará acessível em `http://127.0.0.1:8000`.
+A API estará acessível em `http://127.0.0.1:8000/docs`.

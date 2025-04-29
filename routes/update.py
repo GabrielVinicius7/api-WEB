@@ -1,23 +1,22 @@
-from xml.dom import NO_MODIFICATION_ALLOWED_ERR
-
-from fastapi import FastAPI
+from fastapi import APIRouter, HTTPException
 from models.model import User
-from main import app
+from data import users
 
-usuarios = []
+router = APIRouter()
 
-@app.put("/usuario/{usuario_id}")
-def atualizar_usuario(usuario_id: int, usuario_atualizado: usuarioAtualizacao):
-    for usuario in usuarios:
-        if usuario.id == usuario_id:
-            if usuario_atualizado.nome is not None:
-                usuario.nome = usuario_atualizado.nome
-            if usuario_atualizado.idade is not None:
-                usuario.idade = usuario_atualizado.idade
-            if usuario_atualizado.email is not None:
-                usuario.email = usuario_atualizado.email
-            if usuario_atualizado.telefone is not None:
-                usuario.telefone = usuario_atualizado.telefone
-            if usuario_atualizado.endereco is not None:
-                usuario.endereço = usuario_atualizado.endereco
-            return usuario
+@router.put("/users/{id}")
+def update_user(id: int, user_update: User):
+    for user in users:
+        if user.id == id:
+            if user_update.name is not None:
+                user.name = user_update.name
+            if user_update.age is not None:
+                user.age = user_update.age
+            if user_update.email is not None:
+                user.email = user_update.email
+            if user_update.phone is not None:
+                user.phone = user_update.phone
+            if user_update.address is not None:
+                user.address = user_update.address
+            return {"message": f"Usuário {user.name} atualizado com sucesso!"}
+    raise HTTPException(status_code=404, detail="Usuário não encontrado")
