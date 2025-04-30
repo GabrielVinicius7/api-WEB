@@ -1,10 +1,9 @@
 from fastapi import APIRouter, HTTPException
-from models.model import User
 from data import users
 
 router = APIRouter()
 
-@router.delete("/users/{user_id}", status_code=200, tags=["Users"])
+@router.delete("/users/{user_id}", status_code=200)
 def delete_user(user_id: int):
     user_to_delete = next((u for u in users if u.id == user_id), None)
     if not user_to_delete:
