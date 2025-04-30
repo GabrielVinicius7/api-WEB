@@ -67,4 +67,4 @@ Para rodar a API localmente com recarregamento automático, siga estes passos:
     INFO:     Application startup complete.
     ```
 
-A API estará acessível em `http://127.0.0.1:8000`. Para visualizar a documentação interativa da API, acesse `http://127.0.0.1:8000/docs` no seu navegador.
+Para visualizar a documentação interativa da API, acesse `http://127.0.0.1:8000/docs` no seu navegador.
