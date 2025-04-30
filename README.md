@@ -1,124 +1,70 @@
 # API Simples com FastAPI
 
-Este README fornece as instruções básicas para entender a estrutura e rodar este projeto FastAPI.
+Esta API é construída com FastAPI e oferece funcionalidades para gerenciar informações de usuários e interagir através de um chat com inteligência artificial.
 
-## Estrutura das Rotas
+**Funcionalidades:**
 
-Todas as rotas devem seguir a seguinte estrutura:
+-   **Gerenciamento de Usuários:** A API permite criar, visualizar, atualizar e deletar registros de usuários. Os dados são armazenados em uma lista na memória.
+-   **Chat Interativo:** A API inclui um chat que pode fornecer informações sobre os usuários cadastrados e interagir com o usuário. É importante notar que, devido à estrutura de dados baseada em lista, o chat não realiza alterações nos dados, mas pode trazer resultados personalizados e contextuais.
 
-1.  Importar `APIRouter` do FastAPI.
-2.  Instanciar `APIRouter` em uma variável chamada `router`.
-3.  Usar o decorador `@router` para definir os métodos HTTP (GET, POST, PUT, DELETE, etc.) e o caminho da rota.
+## 🚨 AVISO IMPORTANTE SOBRE A CHAVE DA API DO CHAT 🚨
 
-**Exemplo:**
+##################################################################
 
-```python
-# Em routes/arquivo_da_rota.py
-from fastapi import APIRouter
-from models.model import User # Exemplo de importação do modelo
+A CHAVE DA API UTILIZADA PARA A FUNCIONALIDADE DE CHAT
+EXPIRA EM: DOMINGO, 04 DE MAIO DE 2025.
+APÓS ESSA DATA, A FUNCIONALIDADE DE CHAT PODE PARAR DE
+FUNCIONAR. POR FAVOR, ATUALIZE A CHAVE PARA CONTINUAR
+UTILIZANDO O CHAT.
 
-router = APIRouter()
+##################################################################
 
-@router.post("/users")
-def create_user(user: User):
-    # Lógica da rota aqui
-    pass
-```
 
-## Acesso aos Dados
+## Dependências
 
-Os dados da aplicação (neste caso, uma lista de usuários) estão armazenados no arquivo `data.py`. Para manipular esses dados nas rotas, importe a lista necessária.
+Para rodar esta aplicação, você precisa das seguintes dependências Python:
 
-**Exemplo:**
+fastapi==0.115.12
+pydantic==2.11.3
+pydantic_core==2.33.1
+uvicorn==0.34.2
+email_validator==2.2.0
+httpx
 
-```python
-# Em routes/arquivo_da_rota.py
-from data import users # Importa a lista 'users' do arquivo data.py
-from fastapi import APIRouter
-from models.model import User
-
-router = APIRouter()
-
-@router.get("/users")
-def get_users():
-    return users # Retorna a lista de usuários
-```
-
-## Modelo de Dados
-
-Para garantir a validação e estrutura correta dos dados recebidos e enviados (especialmente em requisições POST e PUT), importe a classe do modelo correspondente (neste caso, `User`) do arquivo `models/model.py`.
-
-**Exemplo:**
-
-```python
-# Em routes/arquivo_da_rota.py
-from models.model import User # Importa a classe User
-from fastapi import APIRouter
-
-router = APIRouter()
-
-# Exemplo de uso no corpo da requisição
-@router.post("/users")
-def create_user(user: User):
-    # 'user' será uma instância validada da classe User
-    pass
-```
-
-## Integração das Rotas na Aplicação Principal
-
-Para que as rotas criadas sejam acessíveis, elas precisam ser incluídas no arquivo principal da aplicação (`main.py`) usando `app.include_router()`.
-
-**Exemplo (`main.py`):**
-
-```python
-from fastapi import FastAPI
-# Importe os módulos das rotas
-from routes import create, update, delete, read # Assumindo arquivos create.py, update.py, etc. dentro de /routes
-
-app = FastAPI()
-
-# Inclua o router de cada módulo
-app.include_router(create.router)
-app.include_router(update.router)
-app.include_router(delete.router)
-app.include_router(read.router)
-
-# Restante da configuração da aplicação, se houver
-```
+Você pode instalar todas as dependências usando o `pip` e o arquivo `requirements.txt`.
 
 ## Instalação
 
-Antes de rodar a aplicação, instale as dependências necessárias:
+1.  Certifique-se de que o Python está instalado no seu sistema.
+2.  Navegue até o diretório onde o arquivo `requirements.txt` está localizado.
+3.  Execute o seguinte comando para instalar as dependências:
 
-```bash
-pip install fastapi
-pip install pydantic
-pip install uvicorn[standard]
-pip install pydantic[email]
-```
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-_Nota: `uvicorn[standard]` instala o `uvicorn` junto com dependências recomendadas para melhor performance._
+<br>
 
 ## Execução
 
-Para rodar a aplicação localmente com recarregamento automático (útil durante o desenvolvimento), use o Uvicorn. Navegue até o diretório raiz do projeto no terminal e execute:
+Para rodar a API localmente com recarregamento automático, siga estes passos:
 
-```bash
-uvicorn main:app --reload
-```
+1.  Abra o terminal e navegue até o diretório raiz do projeto (onde o arquivo `main.py` está).
+2.  Execute o seguinte comando:
 
-_Substitua `main` pelo nome do seu arquivo Python principal (sem a extensão `.py`) e `app` pelo nome da variável onde você instanciou `FastAPI()`._
+    ```bash
+    uvicorn main:app --reload
+    ```
 
-Após executar o comando, você deverá ver uma saída semelhante a esta no terminal, indicando que o servidor está rodando:
+3.  Se a API iniciar com sucesso, você verá uma saída semelhante a esta:
 
-```
-INFO:     Will watch for changes in directories: ['/caminho/para/seu/projeto']
-INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [PID] using StatReload
-INFO:     Started server process [PID]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-```
+    ```
+    INFO:     Will watch for changes in directories: ['/caminho/para/seu/projeto']
+    INFO:     Uvicorn running on [http://127.0.0.1:8000](http://127.0.0.1:8000) (Press CTRL+C to quit)
+    INFO:     Started reloader process [PID] using StatReload
+    INFO:     Started server process [PID]
+    INFO:     Waiting for application startup.
+    INFO:     Application startup complete.
+    ```
 
-A API estará acessível em `http://127.0.0.1:8000/docs`.
-pip install -r requirements.txx
+A API estará acessível em `http://127.0.0.1:8000`. Para visualizar a documentação interativa da API, acesse `http://127.0.0.1:8000/docs` no seu navegador.
