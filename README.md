@@ -31,7 +31,7 @@ uvicorn==0.34.2
 email_validator==2.2.0
 httpx
 
-Você pode instalar todas as dependências usando o `pip` e o arquivo `requirements.txt`.
+Você pode instalar todas as dependências usando o `pip` e o arquivo `requirements.txt` através do comando: pip install -r requirements.txt.
 
 ## Instalação
 
