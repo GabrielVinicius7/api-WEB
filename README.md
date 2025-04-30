@@ -121,3 +121,4 @@ INFO:     Application startup complete.
 ```
 
 A API estará acessível em `http://127.0.0.1:8000/docs`.
+pip install -r requirements.txx

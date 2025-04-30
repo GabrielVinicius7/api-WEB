@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routes import create,update,delete,read
+from routes import create,update,read,delete
 from data import users 
 
 

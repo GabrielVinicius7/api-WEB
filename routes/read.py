@@ -5,9 +5,9 @@ from data import users
 router = APIRouter()
 
 
-@router.get("/")
+'''@router.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"Hello": "World"}'''
 
 
 @router.get("/users/{user_id}")
